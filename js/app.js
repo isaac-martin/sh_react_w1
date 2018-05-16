@@ -1,31 +1,59 @@
-const Highlight = ({ color, children }) => (
+const Highlight = ({color, children}) => (
   <span className={`relative highlight highlight-${color}`}>
     <span className="relative z-2">{children}</span>
   </span>
-)
+);
 
-const Intro = () => <div className="m-auto-ns f4 f3-m f2-l tc w-80-l normal">
-  <div className="mb3 mb4-ns"><Highlight color='aqua'>Lost in Tokyo</Highlight> is a directory of fun places to see, play in and <Highlight color='yellow'>explore</Highlight>, in <Highlight color='blue'>Tokyo, </Highlight>Japan. </div>
-  <div>From museums and galleries, to Robot Restaurants and kitten cafes, Tokyo is the gift that keeps on giving. Dattebayo!</div>
-</div>
+const Intro = () => (
+  <div className="m-auto-ns f4 f3-m f2-l tc w-80-l normal">
+    <div className="mb3 mb4-ns">
+      <Highlight color="aqua">Lost in Tokyo</Highlight> is a directory of fun places to see, play in
+      and <Highlight color="yellow">explore</Highlight>, in{' '}
+      <Highlight color="blue">Tokyo, </Highlight>Japan.{' '}
+    </div>
+    <div>
+      From museums and galleries, to Robot Restaurants and kitten cafes, Tokyo is the gift that
+      keeps on giving. Dattebayo!
+    </div>
+  </div>
+);
 
-const NavItem = ({ className, href, children, logo }) => (
+class Attraction extends React.Component {
+  render() {
+    const {title, description, className, image} = this.props;
+    return (
+      <div
+        className={`ph4 ph5-ns ph0-l mb4 mb5-ns w-100 overflow-hidden pointer attraction ${className}`}
+        onMouseOver={() => alert('cliced')}
+      >
+        <div className="relative">
+          <div className="absolute w-100 h-100 flex items-center pa3 pa4-ns bg-aqua overlay">
+            <div>
+              <h1 className="f4 f3-ns mt0 mb2 regular black normal lh-title">{title}</h1>
+              <p className="lh-title lh-copy-ns mv0 black f6 measure-l">{description}</p>
+            </div>
+          </div>
+          <img src={`../images/${image}`} className="db" />
+        </div>
+      </div>
+    );
+  }
+}
+
+const NavItem = ({className, href, children, logo}) => (
   <li className={`nh2-ns f6 f4-1 tc ${className}`}>
-    <a className='white no-underline' href="{href}">
+    <a className="white no-underline" href="{href}">
       {logo ? <img src="../images/logo.svg" className="db center logo" /> : children}
-
     </a>
   </li>
-)
+);
 const Nav = () => (
-  <nav className='pt3 pt4-ns nb4 mb0-ns'>
-    <ul className='list flex flex-wrap flex-nowrap-ns justify-between items-center pa0 na0'>
-      {menu.map(item =>
-        <NavItem {...item} />
-      )}
+  <nav className="pt3 pt4-ns nb4 mb0-ns">
+    <ul className="list flex flex-wrap flex-nowrap-ns justify-between items-center pa0 na0">
+      {menu.map(item => <NavItem {...item} />)}
     </ul>
   </nav>
-)
+);
 
 const App = () => (
   <div>
@@ -33,10 +61,10 @@ const App = () => (
       <Nav />
       <Intro />
     </div>
-    <div className="flex flex-wrap container">{/* our attractions list component */}</div>
+    <div className="flex flex-wrap container">
+      {attractions.map(attraction => <Attraction {...attraction} />)}
+    </div>
   </div>
-)
+);
 
 ReactDOM.render(<App />, document.getElementById('root'));
-
-
