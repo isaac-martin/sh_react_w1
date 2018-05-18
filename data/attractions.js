@@ -68,5 +68,13 @@ const attractions = [
     link: 'http://www.ghibli-museum.jp/en/',
     image: 'image_9.jpg',
     className: 'w-third-l ml-auto-l'
+  },
+  {
+    title: 'Isaac Museum',
+    description:
+      'A short ride outside of Tokyo, the Ghibli museum showcases the work of Studio Ghibli – the creators of Spirited Away, My Neighbour Totoro and many other Anime feature films. This is one for the animation-lovers.',
+    link: 'http://www.ghibli-museum.jp/en/',
+    image: 'image_10.jpg',
+    className: 'w-third-l ml5-l'
   }
 ];
